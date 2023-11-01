@@ -1,8 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const webpush = require("web-push");
+const dotenv = require("dotenv");
 
 const app = express();
+
+dotenv.config();
 
 app.use(
     express.urlencoded({
@@ -26,9 +29,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const publicVapidKey = "BImX268DOPKNEoMS2X1_afkObVDsNlu2ieTIVMMCElCYWUrm4bwy76wyRcgFnK0wBR82at-LXMu08puYK0LwD_8";
+const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
 
-const privateVapidKey = "WvPN0blg8PSxeAH4OyQZK-KJyJolLOvPHPq4XBq3eXg";
+const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
 
 // Setup the public and private VAPID keys to web-push library.
 webpush.setVapidDetails("mailto:mtuong669@gmail.com", publicVapidKey, privateVapidKey);
