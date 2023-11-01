@@ -14,10 +14,6 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    return res.send("helloword");
-});
-
 //store database subscription
 const subscriptions = [];
 
@@ -34,7 +30,11 @@ const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
 const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
 
 // Setup the public and private VAPID keys to web-push library.
-webpush.setVapidDetails("mailto:mtuong669@gmail.com", publicVapidKey, privateVapidKey);
+webpush.setVapidDetails("mailto:mtuong669@gmail.com", publicVapidKey.toString(), privateVapidKey.toString());
+
+app.get("/", (req, res) => {
+    return res.send("helloword");
+});
 
 // Create route for allow client to subscribe to push notification.
 app.post("/subscribe", (req, res) => {
