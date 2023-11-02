@@ -50,7 +50,10 @@ app.post("/subscribe", (req, res) => {
 });
 
 app.post("/send-notification", (req, res) => {
-    const payload = JSON.stringify({ title: "Hello World", body: "This is your first push notification" });
+    const payload = JSON.stringify({
+        title: "Thanh toán thành công",
+        body: "Bạn đã thanh toán thành công cho đơn hàng trên máy POS-25",
+    });
     console.log("Log check click");
 
     res.status(201).json({});
